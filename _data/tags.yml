@@ -1,16 +1,40 @@
-speeches:
-  name: speeches
-  description: Some of the greatest words ever spoken.
-  cover: assets/images/speeches.jpg
-fiction:
-  name: fiction
-  description: False
-  cover: False
-fables:
-  name: fables
-  description: A series of short stories that make you think.
-  cover: assets/images/fables.jpg
-getting-started:
-  name: getting-started
-  description: False
-  cover: False
+about:
+  name: about
+  description: In consideration of this medium
+  cover: assets/images/dog.png
+augmentation:
+  name: Augmentation Parable
+  description: cloudy things
+  cover: assets/images/hand.png
+automotive:
+  name: Automotive
+  description: A faster way to do dumb things
+  cover: assets/images/automotive.png
+aws:
+  name: aws
+  description: cloudy things
+  cover: assets/images/aws.png
+code:
+  name: Code
+  description: Concerns of Software
+  cover: assets/images/code.png
+ideas:
+  name: ideas
+  description: Geyers of Madness
+  cover: assets/images/ideas.png
+gto:
+  name: GM A Bodies
+  description: How to shoot yourself in the foot via internal combustion
+  cover: assets/images/automotive.png
+optimisticbearings:
+  name: Optimistic Bearings Project
+  description: The RV/Trailer owner's best friend, [Optimistic Bearings](https://optimisticbearings.majway.com/)
+  cover: assets/images/rv8.png
+projects:
+  name: Projects
+  description: Projecty Things
+  cover: assets/images/ideas.png
+python:
+  name: python
+  description: In consideration of python
+  cover: assets/images/python-tag.png

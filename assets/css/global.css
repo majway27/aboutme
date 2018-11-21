@@ -8,9 +8,9 @@
     --purple: #ad26b4;
     --yellow: #fecd35;
     --red: #f05230;
-    --darkgrey: #15171A;
-    --midgrey: #738a94;
-    --lightgrey: #c5d2d9;
+    --darkgrey: #363328;
+    --midgrey: #0D324D;
+    --lightgrey: #3F4045;
     --whitegrey: #e5eff5;
     --pink: #fa3a57;
     --brown: #a3821a;
@@ -309,7 +309,7 @@ hr {
     padding: 0;
     height: 1px;
     border: 0;
-    border-top: 1px solid color(var(--lightgrey) l(+10%));
+    border-top: 2px solid var(--midgrey);
 }
 
 audio,

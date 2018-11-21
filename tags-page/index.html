@@ -1,0 +1,22 @@
+---
+layout: default
+current: tags-page
+title: Tags on Site
+navigation: true
+logo: 
+class: page-template
+subclass: 'post page'
+---
+
+<ul>
+  {% for tag in site.data.tags %}
+  {% assign t = tag | first %}
+    <li>
+        <p><a href="{{site.baseurl}}tag/{{ site.tag_page_dir }}/{{ t | slugify: 'pretty' }}/">{{ t }}</a></p>
+        <p><img class="img-my-tags" src="{{site.baseurl}}{{tag[1].cover}}"></p>
+        <p>{{tag[1].description}}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+

@@ -18,14 +18,18 @@ code:
   name: Code
   description: Concerns of Software
   cover: assets/images/code.png
-ideas:
-  name: ideas
-  description: Geyers of Madness
-  cover: assets/images/ideas.png
 gto:
   name: GM A Bodies
   description: How to shoot yourself in the foot via internal combustion
   cover: assets/images/automotive.png
+ideas:
+  name: ideas
+  description: Geyers of Madness
+  cover: assets/images/ideas.png
+linux:
+  name: Linux-Unix
+  description: Operating Systems
+  cover: assets/images/code.png
 optimisticbearings:
   name: Optimistic Bearings Project
   description: The RV/Trailer owner's best friend, [Optimistic Bearings](https://optimisticbearings.majway.com/)

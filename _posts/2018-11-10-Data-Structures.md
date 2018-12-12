@@ -11,6 +11,6 @@ subclass: 'post tag-getting-started'
 author: rob
 ---
 
-blah, blah, blah
+# Topics
 
 Photo by Jacek Dylag on Unsplash

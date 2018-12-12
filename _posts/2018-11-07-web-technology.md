@@ -11,6 +11,6 @@ subclass: 'post tag-speeches'
 author: rob
 ---
 
-blah, blah, blah
+# Topics
 
 Photo by Camille Villanueva on Unsplash

@@ -23,6 +23,8 @@ Editor Note:
 Sources: 
 - [Data Structure - Wikipedia](https://en.wikipedia.org/wiki/Data_structure), [Array Data Type - Wikipedia](https://en.wikipedia.org/wiki/Array_data_type), 
   [Stack (Abstract Data Type) - Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), [Linked List - Wikipedia](https://en.wikipedia.org/wiki/Linked_list#Singly_linked_lists),
+  [Tree (Data Structure](https://en.wikipedia.org/wiki/Tree_(data_structure)), [Hash Table](https://en.wikipedia.org/wiki/Hash_table),
+  [Associative Array](https://en.wikipedia.org/wiki/Associative_array)
   
 - [Data Structures - Wikibooks](https://en.wikibooks.org/wiki/Data_Structures)
 - Google
@@ -38,7 +40,8 @@ Sources:
 
 ##### - In the weeds -
 ### Arrays
-
+- In computer science, an array data structure, or simply an array, is a data structure consisting of a collection of elements (values or variables), each identified by at least one array index or key. 
+- An array is stored such that the position of each element can be computed from its index tuple by a mathematical formula.
 
 ### Linked Lists
 - In computer science, a Linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Linked lists are among the simplest and most common data structures.
@@ -53,14 +56,15 @@ Sources:
   - pop, which removes the most recently added element that was not yet removed.
 
 ### Queues
-
-### Hash-sets
-
-### Hash-maps
+- In computer science, a queue is a particular kind of abstract data type (ADT) or collection in which the entities in the collection are kept in order and the principal (or only) operations on the collection are the addition of entities to the rear terminal position, known as enqueue, and removal of entities from the front terminal position, known as dequeue.
 
 ### Hash-tables
+- In computing, a hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. 
+- A hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
 
 ### Dictionaries
+- In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.
 
 ### Binary Trees
-
+- In computer science, a tree is a widely used abstract data type (ADT)—or data structure implementing this ADT—that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.
+- A tree data structure can be defined recursively (locally) as a collection of nodes (starting at a root node), where each node is a data structure consisting of a value, together with a list of references to nodes (the "children"), with the constraints that no reference is duplicated, and none points to the root.

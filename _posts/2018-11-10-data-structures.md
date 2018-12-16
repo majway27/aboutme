@@ -27,6 +27,7 @@ Sources:
   [Associative Array](https://en.wikipedia.org/wiki/Associative_array)
   
 - [Data Structures - Wikibooks](https://en.wikibooks.org/wiki/Data_Structures)
+- [Tutorials Point - Python](https://www.tutorialspoint.com/python/)
 - Google
 - Photo by Jacek Dylag on Unsplash
 
@@ -60,11 +61,26 @@ Sources:
 
 ### Hash-tables
 - In computing, a hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. 
-- A hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
+  - A hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
+- Python:
+  - Hash tables are a type of data structure in which the address or the index value of the data element is generated from a hash function. 
+  - That makes accessing the data faster as the index value behaves as a key for the data value. 
+  - In other words Hash table stores key-value pairs but the key is generated through a hashing function.
+  - Python
+    - **Dictionary data types** represent the implementation of hash tables. 
+    - The Keys in the dictionary satisfy the requirements.
 
 ### Dictionaries
 - In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.
 
 ### Binary Trees
 - In computer science, a tree is a widely used abstract data type (ADT)—or data structure implementing this ADT—that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.
-- A tree data structure can be defined recursively (locally) as a collection of nodes (starting at a root node), where each node is a data structure consisting of a value, together with a list of references to nodes (the "children"), with the constraints that no reference is duplicated, and none points to the root.
+- A tree data structure can be defined recursively (locally) as a collection of nodes (starting at a root node).
+  - Each node is a data structure consisting of a value, together with a list of references to nodes (the "children")
+    - ..with the constraints that no reference is duplicated, 
+    - .. and none points to the root.
+- Python
+  - Tree represents the nodes connected by edges. It is a **non-linear data structure**. It has the following properties:
+    - One node is marked as Root node.
+    - Every node other than the root is associated with one parent node.
+    - Each node can have an arbiatry number of chid node.

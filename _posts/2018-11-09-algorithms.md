@@ -106,8 +106,16 @@ Sources:
 - Divide, conquer, combine
 
 ## Graph
+- Like a social graph
+
 
 ## Breadth
+- Breadth-first search, also known as BFS, finds shortest paths from a given source vertex to all other vertices, in terms of the number of edges in the paths.
+- Breadth-first search assigns two values to each vertex v.
+  - A distance, giving the minimum number of edges in any path from the source vertex to vertex v.
+  - The predecessor vertex of v along some shortest path from the source vertex. 
+  - The source vertex's predecessor is some special value, such as null, indicating that it has no predecessor.
+  - If there is no path from the source vertex to vertex v, then v's distance is infinite and its predecessor has the same special value as the source's predecessor.
 
 ## Greediness
 

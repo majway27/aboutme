@@ -21,6 +21,7 @@ Editor Note:
 - Document Purpose: Conveniently scoped refresher on the listed {{page.topic-variable}}.
 
 Sources: 
+- [**<sup>KA</sup>** Khan Academy - Algorithms](https://www.khanacademy.org/computing/computer-science/algorithms)
 - [Data Structure - Wikipedia](https://en.wikipedia.org/wiki/Data_structure), [Array Data Type - Wikipedia](https://en.wikipedia.org/wiki/Array_data_type), 
   [Stack (Abstract Data Type) - Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), [Linked List - Wikipedia](https://en.wikipedia.org/wiki/Linked_list#Singly_linked_lists),
   [Tree (Data Structure](https://en.wikipedia.org/wiki/Tree_(data_structure)), [Hash Table](https://en.wikipedia.org/wiki/Hash_table),
@@ -58,6 +59,10 @@ Sources:
 
 ### Queues
 - In computer science, a queue is a particular kind of abstract data type (ADT) or collection in which the entities in the collection are kept in order and the principal (or only) operations on the collection are the addition of entities to the rear terminal position, known as enqueue, and removal of entities from the front terminal position, known as dequeue.
+- We use a queue, which is a data structure that allows us to insert and remove items, where the item removed is always the one that has been in the queue the longest. We call this behavior first in, first out. A queue has three operations:
+  - enqueue(obj) inserts an object into the queue.
+  - dequeue() removes from the queue the object that has been in it the longest, returning this object.
+  - isEmpty() returns true if the queue currently contains no objects, and false if the queue contains at least one object.
 
 ### Hash-tables
 - In computing, a hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. 

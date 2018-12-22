@@ -29,6 +29,7 @@ Sources:
   
 - [Data Structures - Wikibooks](https://en.wikibooks.org/wiki/Data_Structures)
 - [Tutorials Point - Python](https://www.tutorialspoint.com/python/)
+- [Beau Carnes - FreeCodeCamp - 10 Common Data Structures](https://medium.freecodecamp.org/10-common-data-structures-explained-with-videos-exercises-aaff6c06fb2b)
 - Google
 - Photo by Jacek Dylag on Unsplash
 
@@ -41,16 +42,22 @@ Sources:
 - Data structures also provide guarantees about algorithmic complexity — choosing an appropriate data structure for a job is crucial for writing good software.
 
 ##### - In the weeds -
-### Arrays
-- In computer science, an array data structure, or simply an array, is a data structure consisting of a collection of elements (values or variables), each identified by at least one array index or key. 
-- An array is stored such that the position of each element can be computed from its index tuple by a mathematical formula.
+### Data Types
+- Primitive types
+  - Composite or nono-primitive type
+  - Abstract
 
-### Linked Lists
-- In computer science, a Linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Linked lists are among the simplest and most common data structures.
-  - Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. 
-- In its most basic form, each node contains: data, and a reference (in other words, a link) to the next node in the sequence. 
-  - This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration.
-- They can be used to implement several other common abstract data types, including lists, stacks, queues, associative arrays, and S-expressions, though it is not uncommon to implement those data structures directly without using a linked list as the basis.
+### Linear Data Structures
+- Arrays
+  - In computer science, an array data structure, or simply an array, is a data structure consisting of a collection of elements (values or variables), each identified by at least one array index or key. 
+  - An array is stored such that the position of each element can be computed from its index tuple by a mathematical formula.
+
+- Linked Lists
+  - In computer science, a Linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Together, they represent a sequence.
+    - Linked lists are among the simplest and most common data structures.
+    - Their structure allows for efficient insertion or removal of elements from any position in the sequence during iteration.
+  - They can be used to implement several other common abstract data types, including lists, stacks, queues, associative arrays.
+  - The most basic operations in a linked list are adding an item to the list, deleting an item from the list, and searching the list for an item.
 
 ### Stacks
 - In computer science, a stack is an abstract data type that serves as a collection of elements, with two principal operations:
@@ -64,7 +71,7 @@ Sources:
   - dequeue() removes from the queue the object that has been in it the longest, returning this object.
   - isEmpty() returns true if the queue currently contains no objects, and false if the queue contains at least one object.
 
-### Hash-tables
+### Hash Based Structures
 - In computing, a hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. 
   - A hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
 - Python:
@@ -78,7 +85,7 @@ Sources:
 ### Dictionaries
 - In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.
 
-### Binary Trees
+### Trees
 - In computer science, a tree is a widely used abstract data type (ADT)—or data structure implementing this ADT—that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.
 - A tree data structure can be defined recursively (locally) as a collection of nodes (starting at a root node).
   - Each node is a data structure consisting of a value, together with a list of references to nodes (the "children")
@@ -89,3 +96,6 @@ Sources:
     - One node is marked as Root node.
     - Every node other than the root is associated with one parent node.
     - Each node can have an arbiatry number of chid node.
+
+### Graphs
+- Placeholder

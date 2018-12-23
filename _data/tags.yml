@@ -2,6 +2,10 @@ about:
   name: about
   description: In consideration of this medium
   cover: assets/images/dog.png
+administration:
+  name: administration
+  description: Server admin stuff
+  cover: assets/images/code.png
 augmentation:
   name: Augmentation Parable
   description: cloudy things
@@ -29,6 +33,10 @@ ideas:
 linux:
   name: Linux-Unix
   description: Operating Systems
+  cover: assets/images/code.png
+lpic:
+  name: lpic
+  description: Pertaining to the Linux Professional Institute Certifications
   cover: assets/images/code.png
 optimisticbearings:
   name: Optimistic Bearings Project

@@ -46,6 +46,10 @@ projects:
   name: Projects
   description: Projecty Things
   cover: assets/images/ideas.png
+protocol-scheme:
+  name: protocol-scheme
+  description: Protocol or Scheme
+  cover: assets/images/ideas.png
 python:
   name: python
   description: In consideration of python

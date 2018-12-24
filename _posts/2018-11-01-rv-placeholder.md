@@ -10,5 +10,6 @@ class: post-template
 subclass: 'post tag-getting-started'
 author: rob
 ---
+> There are more airplanes in the ocean than submarines in the sky. -Said Gravity while drunk
 
 Blah, blah, blah, blah

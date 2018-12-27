@@ -219,3 +219,60 @@ rmay@dev-vm:~/Projects/dojo$ vmstat -s
 
 
 #### Disk and file usage
+##### LSOF
+> list open files -man
+
+- Why lsof?  If you had a busy disk based on above diagnostic tool output, lsof could tell you what files 
+are open on that mount, you could then tie that to a process/app, and go from there.
+
+````bash
+rmay@dev-vm:~/Projects/dojo$ lsof -u rmay | wc -l && lsof -u rmay | head -10
+5624
+COMMAND     PID USER   FD      TYPE             DEVICE SIZE/OFF       NODE NAME
+systemd     936 rmay  cwd       DIR                8,1     4096          2 /
+systemd     936 rmay  rtd       DIR                8,1     4096          2 /
+systemd     936 rmay  txt       REG                8,1  1595792     273581 /lib/systemd/systemd
+systemd     936 rmay  mem       REG                8,1  1700792     267778 /lib/x86_64-linux-gnu/libm-2.27.so
+systemd     936 rmay  mem       REG                8,1   121016     267667 /lib/x86_64-linux-gnu/libudev.so.1.6.9
+systemd     936 rmay  mem       REG                8,1    84032     267756 /lib/x86_64-linux-gnu/libgpg-error.so.0.22.0
+systemd     936 rmay  mem       REG                8,1    43304     267767 /lib/x86_64-linux-gnu/libjson-c.so.3.0.1
+systemd     936 rmay  mem       REG                8,1    34872    3155204 /usr/lib/x86_64-linux-gnu/libargon2.so.0
+systemd     936 rmay  mem       REG                8,1   432640     267737 /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1
+````
+- Note: Does the device 8,1 look familiar?
+- Also important - see PID value, we can tie that to top, etc, and see open files for a troublesome process.
+
+#### Process Deep Inspection
+##### PS
+> report a snapshot of the current processes -man
+
+- Why pstree?  The visual representation is a big timesaver over scrolling back and forth through ps output 
+when tracing a process of interest.
+```bash
+rmay@dev-vm:~/Projects/dojo$ ps -ef | grep myApp
+myAppUser       250     1  0 Dec2 ?        00:00:00 /opt/myApp/bin/startApp.sh
+```
+##### PSTREE
+> display a tree of processes
+
+````bash
+rmay@dev-vm:~/Projects/dojo$ pstree -h -p | head -10
+systemd(1)-+-ModemManager(635)-+-{ModemManager}(701)
+           |                   `-{ModemManager}(723)
+           |-NetworkManager(725)-+-{NetworkManager}(776)
+           |                     `-{NetworkManager}(778)
+           |-VBoxClient(1078)---VBoxClient(1080)---{VBoxClient}(1114)
+           |-VBoxClient(1088)---VBoxClient(1089)
+           |-VBoxClient(1095)---VBoxClient(1096)---{VBoxClient}(1098)
+           |-VBoxClient(1101)---VBoxClient(1102)-+-{VBoxClient}(1104)
+           |                                     `-{VBoxClient}(1105)
+           |-VBoxService(845)-+-{VBoxService}(847)
+
+````
+- -Z for selinux context info (if enabled)
+- -a for passed in params to process start
+
+##### top
+> display Linux processes
+
+- Why top?  Interactive! auto-refreshed!

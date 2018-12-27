@@ -103,9 +103,21 @@ Sources:
 - Divide, conquer, combine
 
 ### Quick Sort
-- Divide, conquer, combine
+- Divide, conquer, no combine.  Recursive algorithm.  All the work happens in the _divide_ step.
+- Works in place.  Worst-case running time is as bad as selection and insertion sorts Θ(<em>n</em><sup>2</sup>).  But its average-case running
+time is as good as merge sorts Θ(<em>n</em>log<sub>2</sub><em>n</em>).
+- <sup>KA</sup>In practice, quicksort out-performs merge sort, and it significantly outperforms sort and insertion sort.
 
-## Graph
+#### Process
+Choose any element as the pivot in subarray array[p..r].  **Partition** all smaller elements to a left array, and all larger to a right array.
+  - As a matter of practice, we'll always choose the rightmost element in the subarray, array[r], as the pivot. 
+    - So, for example, if the subarray consists of [9, 7, 5, 11, 12, 2, 14, 3, 10, 6], then we choose 6 as the pivot. 
+    - After partitioning, the subarray might look like [5, 2, 3, 6, 12, 7, 14, 9, 10, 11]. Let q be the index of where the pivot ends up.
+"Conquer" by recursively sorting the subarrays, into the main array, approriately to left or right of pivot.
+
+<img src="https://ka-perseus-images.s3.amazonaws.com/9876d4dc59e01a4742860ae1831c20f654ed7959.png" style="width:20%;">
+
+## Graph 
 - Like a social graph
 
 

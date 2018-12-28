@@ -7,7 +7,7 @@ title: Capacity Planning
 date: 2018-11-12 10:18:00
 tags: linux, administration, lpic
 class: post-template
-subclass: 'post tag-fiction'
+subclass: 'post tag-linux'
 author: rob
 ---
 
@@ -40,7 +40,6 @@ Sources:
 
 ### 200.1 Measure and Troubleshoot Resource Usage
 
-
 #### System Availability and Uptime
 ##### UPTIME (better than updog)
 >The iostat command is used for monitoring system input/output device loading by observing the time the devices 
@@ -54,7 +53,6 @@ rmay@dev-vm:~/Projects/dojo$ uptime
 
 - Compare against `date`
 - uptime relies on /var/run/utmp, a binary file.  Can be cat'd.
-
 
 #### CPU and Disk IO
 ##### IOSTAT
@@ -81,8 +79,9 @@ Linux 4.15.0-43-generic (dev-vm)        12/24/2018      _x86_64_        (1 CPU)
 avg-cpu:  %user   %nice %system %iowait  %steal   %idle
            3.27    0.06    2.31    0.10    0.00   94.26
 
-```  
-  
+```
+
+Notes:
   - Machine has 1 cpu, 64bit cpu, on v4 kernel
   - rmay user is using average (see 'avg-cpu') of 3.27% of cpu time
   - nice = background, low priority processes
@@ -116,7 +115,6 @@ sda               2.20        27.37        36.03    1625385    2140008
 sda1              2.19        27.24        36.03    1617605    2140008
 
 ```
-
 
 #### Easily Record CPU and Disk IO
 ##### SAR
@@ -176,7 +174,6 @@ rmay@dev-vm:~/Projects/dojo$ df -h | grep sda*
 - **await** _average wait (ms) to serve disk requests_
 - **svctm** _average time the device has taken to service the request, and the average time for the request_
 
-
 #### Memory Utilities
 ##### FREE (memory free)
 > Display amount of free and used memory in the system
@@ -217,7 +214,6 @@ rmay@dev-vm:~/Projects/dojo$ vmstat -s
 ...
 ```
 
-
 #### Disk and file usage
 ##### LSOF
 > list open files -man
@@ -240,7 +236,54 @@ systemd     936 rmay  mem       REG                8,1    34872    3155204 /usr/
 systemd     936 rmay  mem       REG                8,1   432640     267737 /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1
 ````
 - Note: Does the device 8,1 look familiar?
-- Also important - see PID value, we can tie that to top, etc, and see open files for a troublesome process.
+- Also important - see PID value, we can tie that to top, etc, and see open files for a troublesome process.NET
+
+##### IOTOP
+> simple top-like I/O monitor
+
+usage:
+
+```bash
+Total DISK READ :       0.00 B/s | Total DISK WRITE :       0.00 B/s
+Actual DISK READ:       0.00 B/s | Actual DISK WRITE:       0.00 B/s
+  TID  PRIO  USER     DISK READ  DISK WRITE  SWAPIN     IO>    COMMAND  
+ 5214 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.09 % [kworker/u8:2]
+    1 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % init splash
+    2 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kthreadd]
+    4 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kworker/0:0H]
+    6 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [mm_percpu_wq]
+    7 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [ksoftirqd/0]
+    8 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [rcu_sched]
+
+```
+
+Headers:
+- TID: Thread ID
+- PRIO: Idle, best-effort, or real-time
+- DISK READ/DISK WRITE: amount of data being transferred
+- SWAPIN: disk swap amount
+- IO: Percentage of time the process is blocking on input/output
+- COMMAND: process name associated with Thread ID
+
+##### HTOP
+> interactive process viewer
+
+Kind of like `top` with an `-h` flag :)
+Usage example
+```bash
+  1  [||||||||||||||||||||||||                                                   19.2%]   Tasks: 113, 310 thr; 3 running
+  2  [|||||||||||||||||||||||||                                                    20.2%]   Load average: 1.20 0.89 0.62
+  3  [||||||||||||||||||||||||||                                                               20.7%]   Uptime: 05:55:57
+  4  [||||||||||||||||||||||||                                                                                    19.6%]
+  Mem[||||||||||||||||||||||||||||||||||||||||||||||||||||||                                                2.27G/7.79G]
+  Swp[                                                                                                         0K/2.00G]
+
+  PID USER      PRI  NI  VIRT   RES   SHR S CPU% MEM%   TIME+  Command
+F1Help  F2Setup F3SearchF4FilterF5Tree  F6SortByF7Nice -F8Nice +F9Kill  F10Quit
+
+```
+
+Notes
 
 #### Process Deep Inspection
 ##### PS
@@ -252,6 +295,7 @@ when tracing a process of interest.
 rmay@dev-vm:~/Projects/dojo$ ps -ef | grep myApp
 myAppUser       250     1  0 Dec2 ?        00:00:00 /opt/myApp/bin/startApp.sh
 ```
+
 ##### PSTREE
 > display a tree of processes
 
@@ -276,3 +320,85 @@ systemd(1)-+-ModemManager(635)-+-{ModemManager}(701)
 > display Linux processes
 
 - Why top?  Interactive! auto-refreshed!
+
+#### Network and Bandwidth
+##### NETSTAT
+> Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+
+Netstat is a big command.  We will focus on some common switches.
+- Displaying network connections
+- Routing tables
+- And related stats
+
+Routing - Display my routing table
+```bash
+rmay@dev-vm:~/$ netstat -r
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         _gateway        0.0.0.0         UG        0 0          0 enp0s3
+link-local      0.0.0.0         255.255.0.0     U         0 0          0 enp0s3
+192.168.1.0     0.0.0.0         255.255.255.0   U         0 0          0 enp0s3
+```
+Would also reflect static routes.
+
+Summary of connections by protocol
+```bash
+rmay@dev-vm:~/Projects/aboutme$ netstat -s
+Ip:
+    Forwarding: 2
+    31771 total packets received
+    0 forwarded
+    0 incoming packets discarded
+    31769 incoming packets delivered
+    11861 requests sent out
+Icmp:
+    0 ICMP messages received
+...
+    ICMP output histogram:
+Tcp:
+    124 active connection openings
+...
+    31 resets sent
+Udp:
+    4086 packets received
+...
+```
+
+- `-lt` for just tcp
+- `-c` for continuous
+
+##### SS
+> another utility to investigate sockets (glowing review)
+
+- Netstat has been deprecated.  SS is the new hotness.
+- Has most of what netstat has, looks a bit different.
+
+##### IPTRAF
+> Interactive Colorful IP LAN Monitor
+
+- May need to run `sudo iptraf-ng`
+- Pretty cool tool
+- Wireshark-ish, must run as root
+- See adapter stats, query by attributes like traffic proto, etc.
+
+#### User Activity
+##### W
+> Show who is logged on and what they are doing.
+
+### 200.2 Predict Future Resource Needs
+#### Colllect Stats
+##### COLLECTD
+Install collectd
+Plugins, config files in /etc
+/usr/share/collectd - types.db, 2 field spec.  item and way to get it.
+/var/lib/collectd/rrd/<hostname> - location of rrd file that holds metrics data
+Other options:
+- Nagios
+- MRTG
+- Cacti
+- Ichinga -- GUI improvement and restapi, fork of nagios
+
+
+
+
+

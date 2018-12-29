@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover: 'assets/images/internals.png'
+cover: 'assets/images/bldg3.png'
 navigation: True
 title: Capacity Planning
 date: 2018-11-12 10:18:00
@@ -21,7 +21,7 @@ Editor Note:
 
 Sources: 
 - LPIC2 Prep - Linux Academy
-- Photo by Annie Spratt on Unsplash
+- Photo by Victor Garcia on Unsplash
 
 ## Resource Usage
 ### Key System Bottlenecks

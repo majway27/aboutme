@@ -1,9 +1,9 @@
 ---
 layout: post
 current: post
-cover: 'assets/images/bldg2.png'
+cover: 'assets/images/bldg1.png'
 navigation: true
-title: NIX Kernel
+title: NIX Startup
 date: 2018-11-14 10:18:00
 tags: linux, code
 class: post-template
@@ -11,10 +11,9 @@ subclass: 'post tag-linux'
 author: rob
 ---
 
-# Topics - NIX Kernel
+# Topics - NIX Startup
 
-> Linux: the choice of a GNU generation -ksh@cis.ufl.edu
-> (more like) "Compiling the colonel sanders" - my SO, wisdom
+> “The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and starting on the first one.” ― Mark Twain
 
 Editor Note:
 - The material below was cobbled together for personal use, from attributed sources, and endured some mild look/feel massage.
@@ -22,7 +21,7 @@ Editor Note:
 
 Sources: 
 - LPIC2 Prep - Linux Academy
-- Photo by Pierre Châtel-Innocenti on Unsplash
+- Photo source by Tiago B on Unsplash
 
 ## The Linux Kernel
 ### Knowledge Targets

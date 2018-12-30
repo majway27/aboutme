@@ -37,8 +37,53 @@ Linux Foundation and Distro Maintainers
 - FHS - File Hierarchy Spec
 
 #### SysVInit Boot Process
-Big topic
-Other approaches are becoming more popular - Systemd and Upstart
+Big topic, Other approaches are becoming more popular - Systemd and Upstart
+**Process starts with Init process.  At boot.**
+- Used to start all other processes and services.
+- `ps -aux | grep init` shows init, process id 1
 
+**Run Levels**, Determine what state the system is booted to, what services are started as a result.
+- There are some differences between Redhat variants and Debian variants.
 
+##### Redhat and variants
+- RL 0, stop system
+- RL 1, single user mode.  Special - like windows safe mode.  Key services, Filesystem.
+- 2, multi-user mode, but no networking and no gui.  You can login, but no remote access, etc.
+- 3, multi-mode with network, no gui.  Network is generally available, as long as it is defined at RL3.
+- 4, Not defined in RH.  LSB specifies this as not defined.
+- 5, Standard one for a desktop.  Standard b/c is multi-user, network, and GUI.
+- 6, Reboots the system.  Called when you do a reboot or `shutdown -r`
 
+##### Debian and variants
+Contrasted to RH
+- 0-1 matches
+- 2,3,4,5 are all multi-user mode, network, and GUI.
+- 6 matches.
+
+Note: From an LSB perspective, there is RL 7-9.  Most distros don't define these by default.
+
+**Important Ones**
+- 1 - Troubleshooting
+- 3 - Server run level
+- 5 - Desktop mode
+
+For sysv systems, what determines the default RL is `/etc/initab`
+- Sets default
+- Allows for writing hooks around a run level.  Like do this blah thing at RL x.
+
+##### Redhat
+Specific config
+`/etc/rc.d`
+- rc script
+- rcX.d dirs
+- rc.sysinit
+
+##### Debian
+They bring the rcX.d dirs up to `/etc` level.  Ie `/etc/rc0.d`
+
+`echo runlevel` - might work
+Inside an rcX.d dir
+- S - Start scripts
+- K - Kill script
+- Number orders how scripts are ran
+ 

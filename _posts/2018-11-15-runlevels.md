@@ -87,3 +87,16 @@ Inside an rcX.d dir
 - K - Kill script
 - Number orders how scripts are ran
  
+
+#### /etc/init.d and modifying runlevel script
+Things that are specific to Debian or Redhat
+- Debian is closer to LSB by implementation
+- `/etc/init.d/script control-command`
+
+**Modifying runlevels and services**
+- `update-rc.d`
+- `update-rc.d apache2 start 10 2 3 4 5 . stop 90 0 1 6 .`
+- Apache2 will be started (as long as it isn’t already) 
+  - When the system enters RunLevel 2, 3, 4 or 5 with a priority of 10. 
+- It will then be asked to stop when the system enters RunLevel 0, 1 or 6 with a priority of 90.
+

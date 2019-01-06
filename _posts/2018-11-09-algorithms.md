@@ -28,6 +28,7 @@ Sources:
 - Photo by Tom Hoppe on Unsplash
 
 ## Functional Concept - Algorithms
+### Introduction
 - Understanding sorting is a traditional first step towards mastery of algorithms and computer science.<sup>KA</sup>
 - We think about the **running time** of the algorithm as a function of the size of its input.
   - Neat tip: Logarithms are the inverse of exponentials, which grow very rapidly.
@@ -35,6 +36,17 @@ Sources:
   - We call this the rate of growth of the running time. 
 - Big O Theta - upper bound, Big O Omega - lower bound
 - Recursion Technique - Solve a problem by solving a smaller instance of the same problem, unless the problem is so small that we can just solve it directly.
+
+### Examples, Search problem, guess a number from 1..16 when you are told too high or low.
+- A **linear** approach/search would be like this 1,2,3,4.. until you get there.
+  - You'll find it eventually.  Very inefficient.
+- A **binary** approach/search would approach it by spliting in half/halving it.  
+  - Each indication of high/low would get you closer.  Max 9 guesses.
+  - Much more efficient than linear, especially in large number set scenarios. 
+
+### Examples, Route problem
+- To solve a route problem, we need to be able to break each path into uniform, discrete units
+  - Then we can evaluate each unique routes cost in units, pick the cheapest move, and then repeat from our new pos.
 
 ##### - In the weeds -
 ### Big O/Asymptotic Notation
@@ -46,18 +58,30 @@ Sources:
 
 ##### - Searching -
 ### Linear search
-  - _Best case: O(1), Worse case: O(n)_
-  - **Brute force search**
-  - Example if you had to find a number, in an array of numbers.  You would just start at the front of the array and read each element sequencially until you found it.
+Efficiency
+- _Best case: O(1), Worse case: O(n)_
+
+General
+- **Brute force search**
+- Example if you had to find a number, in an array of numbers.  You would just start at the front of the array and read each element sequentially until you found it.
+- Big O analysis tie-in **Efficiency**
+  - If you had a list of 100 items
+    - linear algo is O(1) best case (if the very first one you found was it)
+    - linear algo is O(n) aka O(100) worst case, b/c the 100th item was the one you were looking for (and it took 100 tries to get there)
 
 ### Binary Search
-- _Best case O(1), worst case O(log n)_.  [Khan Academy - Running time of binary search](https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/running-time-of-binary-search)
-- In computer science, binary search is a search algorithm that finds the position of a target value within a sorted array.
-- Binary search compares the target value to the middle element of the array. 
+**Efficiency**
+- _Best case O(1), worst case O(log n)_.  
+- [Khan Academy - Running time of binary search](https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/running-time-of-binary-search)
+
+**General**
+- In computer science, binary search is a search algorithm that finds the position of a target value within a _sorted array_.
+  - Binary search compares the target value to the middle element of the array. 
 - If they are not equal, the **half in which the target cannot lie is eliminated and the search continues on the remaining half**.
-- Again taking the middle element to compare to the target value, and repeating this until the target value is found. 
-- If the search ends with the remaining half being empty, the target is not in the array. 
-- Psuedocode:
+  - Again taking the middle element to compare to the target value, and repeating this until the target value is found. 
+  - If the search ends with the remaining half being empty, the target is not in the array. 
+
+**Psuedocode**
   - Let min = 0 and max = n-1.
   - Compute guess as the average of max and min, rounded down (so that it is an integer).
   - If array[guess] equals target, then stop. You found it! Return guess.

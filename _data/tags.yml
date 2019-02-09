@@ -30,6 +30,10 @@ ideas:
   name: ideas
   description: Geyers of Madness
   cover: assets/images/ideas.png
+java:
+  name: java
+  description: In consideration of java
+  cover: assets/images/code.png
 linux:
   name: Linux-Unix
   description: Operating Systems

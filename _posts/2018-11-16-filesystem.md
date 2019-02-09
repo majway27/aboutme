@@ -32,7 +32,7 @@ Sources:
 Mount cmd
 List all mounts
 /etc/mtab - what mount reads
-Updated everytime somthing is mount/unmounted
+Updated everytime something is mount/unmounted
 
 #### Manual mount/unmount
 Howto

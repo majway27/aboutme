@@ -21,6 +21,7 @@ Editor Note:
 
 Sources: 
 - Pluralsight
+- Wikibooks
 - Photo source by Alexander Gilbertson on Unsplash
 
 ## Runtime Environment
@@ -223,25 +224,176 @@ for (loop-variable-declaration:array)
 
 ## Representing Complex Types with Classes
 ### Classes
+- OO Lang encapsulates data, operations, and usage semantics (what you want to work on and how you want to work on it)
+- Separates "what" is to be done from "how" it is done.  **Class implementer/author** focuses on _how_, **consumer/user** focuses on _what_.
+- A Class is a template for creating an object.  
+- Java source file name normally has same name as class.
+- A class is made up of both state and executable code
+  - **Fields**
+    - Store object state
+  - **Methods**
+    - Executable code that manipulates state and performs operations
+  - **Constructors**
+    - Executable code used during object creation to set initial state
+
+### Using Classes
+- Use the new keyword to create a class instance (aka an object)
+  - Declare variable.  Simply allocates space to store _reference_ to actual object we want to use.
+  ```java 
+  Flight nycToSf; 
+  ```
+  - Use new keyword, assign that the value of new flight.
+  - The call to new flight allocates the memory associated with that class, **returns back** a reference to it.
+  ```java 
+  nycToSf = new Flight(); 
+  ```
+  - Variable nycToSf is not the object but a reference to it
+  - All in one
+  ```java 
+  Flight nycToSf = new Flight();
+  ```
+  - Notice how created Flight object returns its reference, and is provided to reference constructor.
+- **Classes are Reference Types**
+  - Example1: Flight flight1 = new Flight();
+    - Variable flight1 holds a **reference** to the newly created flight object.
+  - Example2:
+  ```java 
+  Flight flight1 = new Flight();
+  Flight flight2 = new Flight();
+  flight2 = flight1;
+  ```
+  - In the above, the object flight1 isn't copied over flight2.  The reference variable is simply repointed.
+- **So Reference Types and Primitive Types have some different behavior.**
+
 ### Encapsulation and Access Modifiers
+- When using an object, a dev shouldn't need to know a whole lot about how it is built
+- Encapsulation - hiding the internal representation of an object
+- Java uses access modifiers to achieve encapsulation
+
+ Modifier | Visibility | Usable on Classes | Usable on Members 
+ --- | --- | --- | ---
+ no access mod | Only within its own package (aka package private) | Y | Y 
+ public | Everywhere | Y | Y 
+ private | Only within its own class | N* | Y 
+* As private applies to top level classes; private is available to nested classes
+
 ### Applying Access Modifiers
+- Note: Once a class is marked as public, the file name must reflect the class name.
+- ```java public class Flight { ... } // Flight.java ``` 
+
 ### Naming Classes
+- Same rules as variable names
+- Similar to variable naming convention, except:
+  - Use only letters and numbers
+  - First character is always a letter
+  - Follow the style often referred to as "Pascal Case".  Start of each word, including first, is uppercase.  All others lower.
+  - Use simple, descriptive nouns, avoid abbreviations.
+  
 ### Method Basics
-### Exiting from a Method
-### Method Return Values
+- Use verb or action statement
+- Exiting: Unless there is an error, control returns to the method caller
+- Returns
+  - Single value
+    - A primitive value
+    - A reference to an object
+    - A reference to an array (arrays are objects)
+  - Example, see return value of a flight object
+  ```java 
+  public Flight createNewSpecialFlightBlah(...) {
+    ...
+    return newFlight;
+  ```
+
 ### Special References: this and null
+- Java provides special references with predefined meanings
+- "this" is an implicit reference to the current object
+  - Useful for reducing ambiguity
+  - Allows an object to pass itself as a parameter
+- "null" is a reference literal
+  - Represents an uncreated object
+  - Can be assigned to any reference variable
+- Java Literals are syntactic representations of boolean, character, numeric, or string data. 
+  - Literals provide a means of expressing specific values in your program.
+- Both static and instance members of reference type not explicitly initialized are set to null by Java
+- 0 for numeric values and false for booleans. 
+- For variables declared in methods - Java requires them to be initialized
+- **See Initializers below**
+
 ### Field Encapsulation, Accessors, and Mutators
+- In most cases, a classes fields should not be directly accessible outside of the class.  Hide implementation details.
+- Accessor/Mutator pattern  (ie getters and setters)
 
 ## Class Initializers and Constructors
 ### Establishing Initial State
+- Field initializers
+- Constructors
+- Initialization blocks
+
 ### Field Initial State and Initializers
+- A field's initial state is established as part of object construction
+- Fields receive a 0 by default
+
+byte, int, short, long | float, double | char | bool
+--- | --- | --- | ---
+0 | 0.0 | '\u0000' | false
+
+- Field initializers allow you specify a field's initial value as part of it's declaration
+
 ### Constructor and Adding Multiple Constructors
+- Differ by signatures, overloading
+
 ### Chaining Constructors and Constructor Visibility
+- With multiple constructors, want to think about visibility
+- Call to other constructor must be on first line
+
+```java 
+public class Passenger {
+    ...
+    public Passenger() {
+    }
+    public Passenger(int freeBags) {
+        this(freeBags > 1 ? 25.0d : 50.0d);
+        this.freeBags = freeBags;
+    }
+    public Passenger(int freeBags, int checkedBags) {
+        this(freeBags);  // chained
+        this.checkedBags = checkedBags;
+    }
+    private Passenger(double perBagFee) {
+        this.perBagFee = perBagFee;
+    }
+}
+```
+- Note chaining above when a something like this happens: ```java Passenger jane = new Passenger(2,3); ```
+
 ### Initialization Blocks
+- Initialization blocks shared across all constructors
+  - Executed as if the code were placed at the start of each constructor
+
 ### Initialization and Construction Order
+- Field Init (1)
+- Init Block (2)
+- Constructor (3)
+
+```java 
+public class OverInitClass {
+    private int theField = 1; //first
+    {
+        theField = 2; //second
+    }
+    public OverInitClass() {
+        theField = 3;  //last, what would print in a getter call.
+    }
+}
+```
 
 ## A Closer look at Parameters
 ### Parameter Immutability
+- In Java, when you call a method, you pass parameters into it.  Those parameter values are actually copied down into the parameter.
+  - Passing by-value
+- Because a copy is actually passed down there, any changes you make arn't visible outside of method.
+- Primitive types
+  - 
 ### Overloading
 ### Overloading Walkthrough
 ### Variable Number of Parameters

@@ -393,27 +393,321 @@ public class OverInitClass {
   - Passing by-value
 - Because a copy is actually passed down there, any changes you make arn't visible outside of method.
 - Primitive types
-  - 
+  - Passed into method, as copies.  Those copies don't affect original variables (outer scope).  
+    - Garbage collected when return/control passed back to calling object.
+- Classes
+  - Example:
+  ```java 
+  Flight val1 = new Flight(10)
+  Flight val2 = new Flight(20)
+  swap(val1, val2)
+  void swap(Flight i, Flight j) {
+    Flight k = i;
+    i = j;
+    j = k;
+  }
+  ```
+  - In the above, references val1/val2 are not altered
+    - New memory is allocated for reference type: i, j, k.
+    - The pointers inside those reference type memory locations are swapped by the code.
+    - When the method completes, and control passes back: i,j,k are garbage collected. 
+  - Note **Important**, changes made inside of method to members of passes class instances do stick.
+
 ### Overloading
-### Overloading Walkthrough
-### Variable Number of Parameters
+- Signature
+  - Number of params
+  - Type of params
+  - Name
+- Variable Number of params
+  - See below
+
+```java 
+public void addPassengers(Passenger[] list) {
+  if(hasSeating(list.length)) {
+    passengers += list.length;
+    for (Passenger passenger : list)
+        ...
+  }
+}
+```
+  - Or
+
+```java  
+public void addPassengers(Passenger... list) {
+```
 
 ## Class Inheritance
 ### Inheritance Basics and Typed References
+- Java is an OO language and allows inherit/derive from other classes
+- extends keyword
+
+```java 
+Flight f = new CargoFlight();
+```
+- In the above CargoFlight extends Flight
+- In the above, you can't use any CargoFlight specific methods, only Flight methods.
+  - Due to reference type of Flight, pointing to class instance of CargoFlight.
+- Why do the above pattern? (aka instead of the more normal CargoFlight cf = new CargoFlight();)
+  - This could be valuable when you have an unknown assortment of Flight instances and derived instances.
+  - You don't have to do extra work to see what each type is before calling something.
+  - You can depend on Flight based stuff being available.  Example:
+
+```java 
+Flight[] squadron = new Flight[5]
+squadron[0] = new Flight();
+squadron[1] = new CargoFlight();
+...
+```
+
 ### Member Hiding and Overriding
+- Fields
+  - If derived class has same field name, it can hide base class field if new'd with a base class type.
+  - This can bite you if you call a base class method on a derived class instance.  
+    - That base method only can see its local and class vars, so it will miss the derived classes hiding var.
+  - See below
+
+```java 
+public class Flight {
+    ...
+    int seats = 150;
+    ...
+}
+public class CargoFlight extends Flight {
+    ...
+    int seats = 12;
+    ...
+}
+Flight f1 = new Flight();
+// print f1.seats = 150
+CargoFlight cf = new CargoFlight();
+// print cf.seats = 12
+
+// !!
+Flight f2 = new CargoFlight();
+// print f2.seats = 150
+// Not 12, cargoflight derived class member var of name seats.
+```
+
+- Methods
+  - A workaround to the above, use a overriding method definition that returns the desired value.
+  - Example:
+ 
+```java 
+public class Flight {
+    ...
+    int getSeats() { return 150; };
+    ...
+}
+public class CargoFlight extends Flight {
+    ...
+    int getSeats() { return 12; };
+    ...
+}
+Flight f1 = new Flight();
+// print f1.getSeats() = 150
+CargoFlight cf = new CargoFlight();
+// print cf.getSeats() = 12
+
+// !!
+Flight f2 = new CargoFlight();
+// print f2.getSeats() = 12
+// Not 12, cargoflight derived class member var of name seats.
+```
+
+  - We didn't have to do anything special to override.  In Java, override happens automagically.
+    - Use @override annotation to be explicit and intentional.
+  - You can do something special if you don't want it overridden.
+
 ### Object Class
+- Root of Java class hierarchy
+- Every class has characteristics of the Object class
+- Useful for declaring variables, fields, and parameters that can reference any class or array instance
+- Defines a number of methods that are inherited by all objects
+- Every class inherits directly or indirectly from object class
+- Examples:
+
+```java 
+Object[] stuff = new Object[3]
+stuff[0] = new Flight();
+stuff[1] = new Passenger(0, 2);
+stuff[2] = new CargoFlight();
+
+Object o = new Passenger();
+o = new Flight[5];
+o = new CargoFlight();
+```
+- Won't work
+```java 
+o.addPackage(1.0,2.5,3.0) //Nope
+```
+- Options
+
+```java 
+CargoFlight cf = o; //Compiler Nope
+CargoFlight cf = (CargoFlight) o; //Yes.  Make sure it will actually be a CargoFlight everytime.
+cf.addPackage(1.0,2.5,3.0) //Yes
+```
+- "Make sure it will actually be a CargoFlight everytime"
+```java 
+if(o instanceof CargoFlight) {
+    ...
+}
+```
+
+- Popular object class methods
+  - clone - Create a new object instance that duplicates the current instance
+  - hashCode - Get a hash code for the current instance
+  - getClass - Return type information for the current instance
+  - toString - Return string of characters representing the current instance.
+
 ### Equality
+- Careful
+- Example below.  f1/f2 point to two separate instances of flight class.
+  - == operator only true if with reference types if both pointing to the same object.
+    - Reference comparisons are very inexpensive
+  - equals method from Object (base) class.  Need to override to use your business logic/problem space.
+  
+```java 
+Flight f1 = new Flight(175)
+Flight f2 = new Flight(175)
+
+if(f1==f2) { //False.  Reference equals test.  Do these references both point to exact same instance?
+    ...
+
+if(f1.equals(f2)) { //False.  Using equals method from Object class, so doing same reference test above.
+    ...
+```
+- Override equals method
+
+```java 
+class Flight {
+    ...
+    private int flightNumber;
+    private int flightClass;
+    
+    @Override
+    public boolean equals(Object o) {
+        ... //check instanceof Flight
+        Flight other = (Flight) o;
+        return
+            flightNumber == other.flightNumber &&
+            flightClass == other.flightClass;
+    }
+```
+- Now this is true 
+```java 
+if(f1.equals(f2)) 
+```
+
 ### Special Reference: Super
+- Similar to _this_, _super_ is an implicit reference to the current object
+  - super treats the object as if it is an instance of its base class
+  - Useful for accessing base class members that have been overridden 
+
 ### Using Final and Abstract
+- By default, all classes can be extended
+- Derived classes have the option to use or override inherited methods
+  - A class can change these defaults
+- Use **final** to prevent overriding
+
+```java 
+public final class Passenger { //No extending/derived classes on this
+    ...
+```
+- More commonly, we do want to allow derived classes, we just want to control overriding certain methods
+  - Mark method definition as final
+- Conversely, abstract keyword requires inheriting and/or overriding
+  - Mark method as abstract and don't provide a body, just end with a semicolon.
+
 ### Inheritance and Constructors
+- Constructors are not inherited
+- A derived class must always call one of the base class constructors
+- As you define the derived class's constructor, it will call back to the base class
+  - If you don't provide one, the no-arg constructor on the base class will be called by default
+- You can explicitly call a base class constructor using super followed by parameter list
+  - Must be first line in constructor
+- Chaining is fine
 
 ## More About Data Types
 ### String Class
-### String Equality
+- The String class stores a sequence of Unicode characters
+- Stored using UTF-16 encoding
+- Literals are enclosed in double quotes
+- String objects are immutable.  If you are doing alot of string work, will be inefficient with memory.
+  - Each time you edit the string (ie add a space), a new memory allocation occurs for the entire new string
+    - And the string reference type is repointed to the new string class instance
+  - Use a string builder
+- Equality
+  - Two strings with same characters fail reference check ==
+  - Equals method for string class would work, does a character by character comparison.
+- Intern method to allow reference check to work
+
 ### String Representation of Non-String Values
+- String.valueOf provides overrides to handle most types
+- Conversions often happen implicitly
+- Class conversions controlled by the class' toString method
+  - If you drop a class reference into a string, you'll get the string representation of the class.
+    - com.mydomain.foo.Flight@761337
+  - Override to create more solution adapted output for class description.
+
 ### StringBuilder Class
+- For optimal performance, set to a large value initially, growing buffer is not cheap.
+```java 
+StringBuilder sb = new StringBuilder(40)
+Flight myFlight = new Flight(175);
+String value = "strongbad";
+sb.append(value)
+sb.append("great")
+sb.insert(11, "is "
+String message = sb.toString();
+```
+
 ### Primitive Wrapper Classes and Type Conversions
+- Classes vs Primitives
+  - Classes provide convenience
+    - Common interaction through Object class
+    - Fields and methods specific to the type
+    - Con: Incurs an overhead cost
+  - Primitives provide efficiency
+    - Can't be treated as Object
+    - Can't expose fields or methods
+    - Pro: Lightweight
+- Primitive wrapper classes
+  - Capabilities and overhead of classes
+  - Hold primitive values, interact with primitive values
+  - All wrapper classes are immutable
+- Object
+  - Boolean
+  - Character
+  - Number
+    - Byte
+    - Short
+    - Integer
+    - Long
+    - Float
+    - Double
+- Conversions between wrapper class and primitive
+- Most common operations are automatic
+```java 
+Integer a = 100;
+int b = a;
+Integer c = b;
+```
+- Wrapper classes provide methods for explicit conversions
+- Primitive to wrapper - valueOf "Boxing", ```Integer d = Integer.valueOf(100) ```
+- Wrapper to Primitive xxxValue, "Unboxing", ```int e = d.intValue(); ```
+- String to primitive parsexxx
+- Note
+
+```java 
+String s = "87.44"; 
+double s1 = Double.parseDouble(s);  //you are getting back a primitive type
+double s2 = Double.valueOf(s); //returns back a reference to a wrapper class that has that value inside of it.
+```
+
 ### Using Primitive Wrapper Classes
+
+
 ### Wrapper Class Equality
 ### Final Fields and Enumeration Types
 

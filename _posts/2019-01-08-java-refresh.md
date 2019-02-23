@@ -737,26 +737,127 @@ char | '\u0000' to '\u00ff'
 boolean | true, false
 
 ### Final Fields and Enumeration Types
+- Fields we don't allow to be set, once they are initialized
+  - Simple final field must be set during creation of an object instance
+    - Field initializer, initialization block, or constructor
+  - Adding a **static** modifier makes a final field a named constant.  
+    - Cant' be set by object instance, value is tied to class itself
+    - Convention is all caps (used for magic numbers)
+- Enumeration types
+  - Useful for defining a type with a finite list of valid values
+  - Declare with enum keyword
+  - Provide a comma-separated value list
 
+```java 
+public enum FlightCrewJob {
+    Pilot,
+    CoPilot,
+    FlightAttendant,
+    AirMarshall
+}
 
+public class CrewMember {
+    private FlightCrewJob;
+    ...
+    public CrewMember(FlightCrewJob job) {
+        this.job = job;
+    }
+}
+
+CrewMember judy = new CrewMember(FlightCrewJob.CoPilot);
+Judy.setJob(FlightCrewJob.Pilot);
+
+```
 
 ## Exceptions and Error Handling
 ### Error Handling with Exceptions
 ### Handling Exceptions by Type
+- Throwable class inherits from Object
+- Error Class (handled in JVM)
+- Exception class
+  - Runtime Exception - errors that occur in your program
+  - Runtime inheritance is consider non-checked exceptions
+- Checked exceptions
+ - Compiler requires you to handle
+
 ### Exceptions and Methods
+- Exceptions propagate up the call stack, to a catch marker
+  - Can cross method boundaries
+  - Exceptions are part of a methods contract
+  - Method is responsible for any checked exceptions that might occur
+    - Catch the exception
+    - Document that the exception might occur (use the **throws** clause)
+- Method overriding
+  - The throws clause of an overriding method must be compatible with the throws clause of the overridden method
+    - Can exclude exception (is already handled in base class)
+    - Can have the same exception
+    - Can have a derived exception
+
 ### Throwing Exceptions and Custom Exceptions
+- Your code can throw exceptions (use throw keyword)
+- Must create exception instance before throwing (provide meaningful detail)
+- Most exception classes provide a constructor that accepts a String message or other detail
+- When caused by another exception, include originating exception
+  - All exception classes support initClause method
+  - Many provide a constructor that accepts the originating exception
+- Custom exception types
+  - In many cases better to use existing exception type
+  - Normally inherit directly from Exception class (makes them checked)
+  - Constructors are often their only members
+    - Most required functionality is inherited
+    - Have constructor that access required detail
+    - Have constructor that accepts required detail and originating exception
 
 ## Working with Packages
 ### What is a Package
+- Create a namespace
+- Provide an access boundary
+- Act as a unit of distribution
+- Package declaration must appear before any type declarations
+- Applies to all types within that source file
+
 ### Packages Create a Namespace
+- Type name is qualified by the package name
+
 ### Determining a Types's Package
+- Explicitly qualifying a type would be cumbersome
+- Types in java.lang package do not need to be qualified
+- Use type imports (import keyword).  Import is just a mapping for the complier.
+- Single type import or import on demand with *
+  - Single type is preferred, modern IDEs will add automatically
+
 ### Packages Provide Access Boundaries
+- Packages can serve as an access boundary
+  - Often referred to as package private
+  - Useful for creating types and features to support functionality provided by package
+    - Types and features are not meant to be used standalone
+  - Can apply to a type
+    - Entire type is accessible outside of the package
+  - Can apply to type members
+    - Specific members of an otherwise accessible type are inaccessible outside of the package
+
+Modifier | Visbility | Usable on types | Usable on Members
+ --- | --- | --- | ---
+ no access modifier | Only within its own package (aka package private) | Y | Y
+ public | Everywhere | Y | Y
+ private | Only within its own class | N | Y
+ protected | Only within its own class and subclasses | N* | Y
+
+* As applies to top-level classes; can be applied to nested-classes
+
 ### Packages Act as a Unit of Distribution
+- Packages provide a predictable software structure
+  - Simplifies distribution
+- Class files organized in hierarchical folders reflecting the package name
+  - Each part of the package name is in a separate folder
+- Archive files (jar)
+  - Optionally includes a manifest (can identify startup class)
+  - Can be compressed
 
 ## Creating Abstract Relationships with Interfaces
 ### Introducing Interfaces and Implementing an Interface
 ### Implementing a Generic Interface
-### Implementing Multiple Intefaces
+### Implementing Multiple Interfaces
 ### Declaring an Interface
 
 ## Static Members, Nested Types, and Anonymous Classes

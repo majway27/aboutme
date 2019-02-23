@@ -3,7 +3,7 @@ layout: post
 current: post
 cover: assets/images/java.png
 navigation: True
-title: Java Refresher Notes
+title: Java Basics Notes
 date: 2019-01-08 10:18:00
 tags: java
 class: post-template
@@ -856,13 +856,95 @@ Modifier | Visbility | Usable on types | Usable on Members
 
 ## Creating Abstract Relationships with Interfaces
 ### Introducing Interfaces and Implementing an Interface
+- In java, an interface is a type that defines a contract
+- Contrast to Classes, Interfaces don't provide an implementation
+- Classes implement interfaces - Express that the class conforms to the contract
+- Interfaces don't limit other aspects of he class' implementation
+
+```java 
+public class Passenger implements Comparable {
+    ...
+    public int compareTo(Object o) {
+    ...
+}
+```
+
 ### Implementing a Generic Interface
+- Some Interfaces require additional type information, a concept known as generics
+- Example
+
+```java 
+public class Flight implements Comparable<Flight> {
+    ...
+```
+
+```java 
+public interface Comparable<T> {
+    int compareTo(T o);
+```
+
+-Get rid of casts
+
 ### Implementing Multiple Interfaces
+- Classes are free to implement multiple interfaces
+
+```java 
+public class flight
+    implements Comparable<Flight>, Iterable<Person> {
+    ...
+```
+
 ### Declaring an Interface
+- Supports a subset of features available to classes
+- Methods
+  - Name, parameters, and return type
+  - Implicitly public
+- Constants
+  - Typed and named values
+  - Implicitly public, final, static
+- Extending interfaces
+  - An interface can extend another interface
+  - Implementing extended interface implies implementation of base
 
 ## Static Members, Nested Types, and Anonymous Classes
 ### Static Members
+- Class variable.  Static members are shared class wide, not individual instance.
+- Field
+- Method
+  - Performs an action not tied to a specific instance
+  - Can access static fields only
+
 ### Static Initialization Blocks
+- Static initialization blocks perform one-time type initialization
+- Executed before type's first use
+- Statements enclosed in brackets outside of any method of constructor
+  - Precede with static keyword
+  - Can't access instance members
+  - Must handle all checked exceptions
+
 ### Nested Types
+- A nested type is a type declared within another type
+- Classes can be declared within classes and interfaces
+- Interfaces can be declared within classes and interfaces
+- Nested members are members of the enclosing type
+  - Private members of the enclosing type are visible to the nested type
+- Nested types support all member access modifiers
+  - public, package private, protected, private
+- Structure and scoping
+  - No relationship between instances of nested and enclosing type
+  - Static classes nested between classes
+  - All classes nested within interfaces
+  - all nested interfaces
+
 ### Inner Classes
+- Each instance of the nested class is associated with an instance of the enclosing class
+- Non-static classes nested within classes
+
 ### Anonymous Classes
+- Anonymous classes are declared as part of their creation
+- Useful for simple interface implementations or class extensions
+- An. classes are inner classes
+  - An. instnce is associated with the containing class instance
+- Create as if you are constructing an instance of the interface or base class
+- Place opening and closing brackets after the interface of base class
+- Place implementation code within the brackets

@@ -706,10 +706,39 @@ double s2 = Double.valueOf(s); //returns back a reference to a wrapper class tha
 ```
 
 ### Using Primitive Wrapper Classes
+- Take advantage of capabilities that all classes have, while working with primitive types
+- We can now treat the primitive type as an object
+```java 
+Object[] stuff = new Object[1]
+stuff[0] = 100;
+```
+- In the above, Java will go head and get a reference to an instance of the integer wrapper class 
+  - with a value of 100 
+  - and assign that reference into stuff[0]
+- Get utility of null references (code can check for null against prim wrapper class value, vs just raw primitive)
 
+Class | Select Members
+ --- | ---
+ Byte, Short Integer, Long | MIN_VALUE, MAX_VALUE, bitCount, toBinaryString
+ Float, Double | MIN_VALUE, MAX_VALUE, isInfinite, isNaN
+ Character | TRUE, FALSE
+ 
 
 ### Wrapper Class Equality
+- Certain boxing conversions will always return same reference (for the same value)
+- Grid below: Boxing conversions that always return the same wrapper class instance
+
+Primitive Type | Values
+ --- | ---
+int | -128 to 127
+short | -128 to 127
+byte | -128 to 127
+char | '\u0000' to '\u00ff'
+boolean | true, false
+
 ### Final Fields and Enumeration Types
+
+
 
 ## Exceptions and Error Handling
 ### Error Handling with Exceptions

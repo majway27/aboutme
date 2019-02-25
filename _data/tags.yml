@@ -18,6 +18,10 @@ aws:
   name: aws
   description: cloudy things
   cover: assets/images/aws.png
+bookreport:
+  name: BookReport
+  description: Personal Notes on Books and Stuff
+  cover: assets/images/code.png
 code:
   name: Code
   description: Concerns of Software
@@ -58,3 +62,7 @@ python:
   name: python
   description: In consideration of python
   cover: assets/images/python-tag.png
+sre:
+  name: Site Reliabilty Engineering
+  description: In consideration of Site Reliabilty Engineering
+  cover: assets/images/sre.png

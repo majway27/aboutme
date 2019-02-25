@@ -168,8 +168,98 @@ but the labor after the birth is where you actually spend most of your effort.
     - High velocity, shared repo.  PRs, built and tested. Testing protects dependent services.
 
 ## Part II - Principles
+- Patterns, behaviors, and areas of concern that influence the general domain of SRE operations
+- A complex system that works necessarily evolved from a simple system that works
+
 ### 3. Embracing Risk
+- Balance the risk of unavailability with the goals of rapid innovation and efficient service operations, so that users’ overall happiness—with features, service, and performance—is optimized
+- Managing Risk
+  - The cost of redundant machine/compute resources
+  - The opportunity cost (feature building vs hardening)
+    - We give equal importance to figuring out how to engineer greater reliability into Google systems and identifying the appropriate level of tolerance for the services we run
+    - We strive to make a service reliable enough, but no more reliable than it needs to be
+    - Explicit, thoughtful risktaking
+- Measuring Service Risk
+  - Unplanned downtime
+  - Time-based availability (service partially up in geo dispersed)
+  - Aggregate availability (request success rate across all services)
+- Risk Tolerance of Services
+  - Identifying the Risk Tolerance of Consumer Services (with Product)
+    - Easy for products, hard for shared infrastructure
+    - What level of availability is required?
+    - Do different types of failures have different effects on the service?
+    - How can we use the service cost to help locate a service on the risk continuum?
+    - What other service metrics are important to take into account?
+      - Target level of availability
+        - What level of service will the users expect?
+        - Does this service tie directly to revenue (either our revenue, or our customers’ revenue)?
+        - Is this a paid service, or is it free?
+        - If there are competitors in the marketplace, what level of service do those competitors provide?
+        - Is this service targeted at consumers, or at enterprises?
+      - Types of failures 
+        - Constant low rate of failures, or an occasional full-site outage
+      - Cost
+        - If we were to build and operate these systems at one more nine of availability, what would our incremental increase in revenue be?
+        - Does this additional revenue offset the cost of reaching that level of reliability?
+          - Proposed improvement in availability target: 99.9% → 99.99%
+          - Proposed increase in availability: 0.09%
+          - Service revenue: $1M
+          - Value of improved availability: $1M * 0.0009 = $900
+        - If cost of change is less than 900, gtg
+      - Other service metrics
+        - 3rd party external servicse performance, etc
+  - Identifying the Risk Tolerance of Infrastructure Services
+    - Target level of availability 
+      - More stringent as a foundation service with many internal customers/products
+      - Can be clever and have flavors (workhorse and racehorse platforms)  **Partition Infra**
+    - Types of failures
+      - Needs for sync or async customer usage profiles
+    - Cost
+      - Price out usage for flavors, put choice on internal customer
+- Motivation for Error Budgets
+  - Software fault tolerance
+    - How hardened do we make the software to unexpected events? Too little, and we have a brittle, unusable product. Too much, and we have a product no one wants to use (but that runs very stably)
+  - Testing
+    - Not enough testing and you have embarrassing outages, privacy data leaks, or a number of other press-worthy events. Too much testing, and you might lose your market
+  - Push frequency
+    - Every push is risky. How much should we work on reducing that risk, versus doing other work?
+  - Canary duration and size
+  - Forming Your Error Budget
+    - Goal is to define an objective metric, agreed upon by both sides, that can be used to guide the negotiations in a reproducible way. The more data-based the decision can be, the better
+    - Product Management defines an SLO, which sets an expectation of how much uptime the service should have per quarter.
+    - The actual uptime is measured by a neutral third party: our monitoring system.
+    - The difference between these two numbers is the "budget" of how much "unreliability" is remaining for the quarter.
+    - As long as the uptime measured is above the SLO—in other words, as long as there is error budget remaining—new releases can be pushed.
+  - Benefits
+    - The main benefit of an error budget is that it provides a common incentive that allows both product development and SRE to focus on finding the right balance between innovation and reliability
+    - What happens if a network outage or datacenter failure reduces the measured SLO? Such events also eat into the error budget. As a result, the number of new pushes may be reduced for the remainder of the quarter. The entire team supports this reduction because everyone shares the responsibility for uptime.
+    - The budget also helps to highlight some of the costs of overly high reliability targets, in terms of both inflexibility and slow innovation. If the team is having trouble launching new features, they may elect to loosen the SLO (thus increasing the error budget) in order to increase innovation.
+
 ### 4. Service Level Objectives
+- It’s impossible to manage a service correctly, let alone well, without understanding which behaviors really matter for that service and how to measure and evaluate those behaviors.
+- Service Level Terminology
+  - Indicators
+  - Objectives
+  - Agreements
+- Indicators in Practice
+  - What Do You and Your Users Care About?
+  - Collecting Indicators
+  - Aggregation
+  - Standardize Indicators
+- Objectives in Practice
+  - Defining Objectives
+  - Choosing Targets
+  - Don’t pick a target based on current performance
+  - Keep it simple
+  - Avoid absolutes
+  - Have as few SLOs as possible
+  - Perfection can wait
+  - Control Measures
+  - SLOs Set Expectations
+  - Keep a safety margin
+  - Don’t overachieve
+- Agreements in Practice
+
 ### 5. Eliminating Toil
 ### 6. Monitoring Distributed Systems
 ### 7. The Evolution of Automation at Google

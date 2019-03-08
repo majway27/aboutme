@@ -1,0 +1,5 @@
+#first pass
+<h\d.*?">(.*?)</h\d><div.*?(<h\d)
+\1\2
+
+#second pass

@@ -11,7 +11,7 @@ subclass: 'post tag-speeches'
 author: rob
 ---
 
-# Topics - Java Refresher Notes
+# Topics - Java Basics Notes
 
 > Knock knock... Who's there?... ... very long pause ... Java! -industry joke
 

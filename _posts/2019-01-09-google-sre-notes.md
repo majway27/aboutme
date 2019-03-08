@@ -265,8 +265,12 @@ but the labor after the birth is where you actually spend most of your effort.
 ### 7. The Evolution of Automation at Google
 ### 8. Release Engineering
 ### 9. Simplicity
+- A well-designed distributed system consists of collaborators, each of which has a clear and well-scoped purpose
+
 ## Part III - Practices
 ### 10. Practical Alerting
+- Aggregation is the cornerstone of rule evaluation in a distributed environment
+- When collecting Borgmon-style data, it’s better to use counters, because they don’t lose meaning when events occur between sampling intervals
 ### 11. Being On-Call
 ### 12. Effective Troubleshooting
 ### 13. Emergency Response

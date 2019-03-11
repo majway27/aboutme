@@ -315,16 +315,84 @@ void readThemAll() throws IOException {
 
 ## String Formatting and Regular Expressions
 ### More Powerful Solutions to Create String Representations
+- Need more powerful string creation
+  - Concatenating strings is often not enough
+  - Very focused on creation details
+  - Numeric conversions awkward
+  - StringBuilder has same issues
+- StringJoiner 
+  - Simplifies joining a sequence of values
+- String formatting
+ - Use format specifiers to closely control string formating
+ - Can specify desired appearance without dealing with creation details 
+
 ### Joining Sequences of Values with StringJoiner
+- Construct the StringJoiner
+  - Specify string to separate values
+  - Optionally specify start/end strings
+- Add values
+- Retrieve the resulting string
+
+```java 
+// StringJoiner ex
+StringJointer sj = new StringJoiner(", ")
+sj.add("alpha").add("theta").add("gamma");
+String theResult = sj.toString();
+
+// More involved separator
+StringJoiner sj = new StringJoiner("], [", "[", "]");
+sj.add("alpha").add("theta").add("gamma");
+String theResult = sj.toString();
+// [alpha], [theta], [gamma]
+
+```
+
 ### StringJoiner Edge Case Handling
+- toString when only one value added
+  - When constructed with separator only - returns added value
+  - When constructed with start/end strings - returns added value within start/end
+- toString when no values added
+  - When constructed with separator only - returns empty string
+  - When constructed with start/end strings - returns string with start/end only
+- You can customize empty case handling
+  - Only considered empty string if add is never called
+
 ### Constructing String with Format Specifiers
+- Focus is on describing the desired result
+  - Not concerned with the how
+- Can control many aspects of appearance
+  - Positioning
+  - Decimal places
+  - Representation
+- Some methods supporting format specifiers
+  - String.format
+  - System.out.printf
+  - Formatter.format
+
+```java 
+# Concatenation vs Formatting
+String s1 = String.format("The words are %d, %d, and %d", foo, bar, baz);
+
+val=3.666665
+String s2 = String.format("blah, blah %1f", val);
+// blah, blah 3.7 
+
+```
+
+- All format specifiers start with a %, and then have a conversion, ie "d"
+- You can specify precision, ie %.1f
+- You can specify width, space-padded, right-justified by default
+
 ### Common Format Conversions
+
+
 ### Format Flags
 ### Argument Index
 ### Writing Formatted Content to a Stream
 ### String Matching with Regular Expressions
 ### String Class Support for RE
 ### Dedicated Regular Expression Classes
+
 ## Working with Collections
 ### Working with Collections
 ### Collections and Type Safety

@@ -5,6 +5,7 @@ cover: 'assets/images/bldg3.png'
 navigation: True
 title: Capacity Planning
 date: 2018-11-12 10:18:00
+categories: [techblog]
 tags: linux, administration, lpic
 class: post-template
 subclass: 'post tag-linux'

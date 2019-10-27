@@ -5,6 +5,7 @@ cover: 'assets/images/bldg1.png'
 navigation: true
 title: NIX Startup
 date: 2018-11-15 10:18:00
+categories: [techblog]
 tags: linux, code
 class: post-template
 subclass: 'post tag-linux'

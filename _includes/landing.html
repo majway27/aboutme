@@ -1,0 +1,16 @@
+{% for tile in site.landing_tiles %}
+    <article class="landing-card {{ page.class }}{% unless tile.cover %} no-image{% endunless %}">
+        {% if tile.cover %}
+            <a class="post-card-image-link" href="{{ site.baseurl }}{{ tile.targettopic | remove_first: '/' }}">
+                <div class="post-card-image" style="background-image: url({{ site.baseurl }}{{ tile.cover }})"></div>
+            </a>
+        {% endif %}
+        <div class="post-card-content">
+            <a class="landing-card-content-link" href="{{ site.baseurl }}{{ tile.targettopic | remove_first: '/' }}">
+                <header class="post-card-header">
+                    <h2 class="post-card-title">{{ tile.title }}</h2>
+                </header>
+            </a>
+        </div>
+    </article>
+{% endfor %}

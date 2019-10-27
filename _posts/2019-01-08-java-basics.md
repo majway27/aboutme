@@ -5,6 +5,7 @@ cover: assets/images/java.png
 navigation: True
 title: "Refresher: Java Basics"
 date: 2019-01-08 10:18:00
+categories: [techblog]
 tags: java
 class: post-template
 subclass: 'post tag-speeches'

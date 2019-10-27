@@ -5,6 +5,7 @@ cover: assets/images/networking.png
 navigation: True
 title: NIX Networking
 date: 2018-11-17 10:18:00
+categories: [techblog]
 tags: linux
 class: post-template
 subclass: 'post tag-speeches'

@@ -1,6 +1,6 @@
 ---
-layout: landing
-current: home
+layout: default
+current: travel
 class: 'home-template'
 navigation: True
 ---
@@ -20,17 +20,17 @@ into the {body} of the default.hbs template -->
                     {{ site.title }}
                 {% endif %}
             </h1>
+            <h2 class="site-description">Travel</h2>
         </div>
+        {% include site-nav.html %}
     </div>
 </header>
 
 <!-- The main content area -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
-
-        <div class="tile-feed">
-            <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
-            {%  include landing.html %}
+        <div class="post-feed">
+            {%  include travel-post-card.html %}
         </div>
 
     </div>

@@ -5,6 +5,7 @@ cover:  assets/images/code.png
 navigation: True
 title: Python Placeholder
 date: 2018-11-02 00:00:01
+categories: [techblog]
 tags: [code, python]
 class: post-template
 subclass: 'post tag-getting-started'

@@ -15,3 +15,4 @@ There are some great open source tools out there!
 2. [faviconit](http://faviconit.com/en)
 3. [Unsplash](https://unsplash.com)
 4. [Photo by Thomas Kvistholt on Unsplash](https://unsplash.com/photos/oZPwn40zCK4)
+5. [Steve Schoger, heropatterns.com](http://www.heropatterns.com/)

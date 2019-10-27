@@ -5,6 +5,7 @@ cover: assets/images/sre.png
 navigation: True
 title: "Personal Notes: Site Reliability Eng. Book by Google"
 date: 2019-01-08 10:18:00
+categories: [techblog]
 tags: sre bookreport
 class: post-template
 subclass: 'post tag-speeches'

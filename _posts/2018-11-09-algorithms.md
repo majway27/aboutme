@@ -5,6 +5,7 @@ cover: assets/images/algorithms.png
 navigation: True
 title: Algorithms
 date: 2018-11-09 10:00:00
+categories: [techblog]
 tags: code
 class: post-template
 subclass: 'post'

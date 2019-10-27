@@ -7,9 +7,18 @@ language: 'en-uk'
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 
+collections:
+  landing_tiles:
+    order:
+      - landing_tile_1_me.md
+      - landing_tile_2_techblog.md
+      - landing_tile_3_travel.md
+      - landing_tile_4_insight.md
+
+
 # Website info
-title: majway27
-description: Rob May, Reliability Engineer, Denver CO
+title: majway
+description: Rob May * Reliability Engineer * Denver, USA
 cover: assets/images/drive7.png
 logo: 
 logo_dark: 

@@ -1,4 +1,4 @@
-{% for post in paginator.posts %}
+{% for post in site.categories.techblog %}
     <article class="post-card {{ page.class }}{% unless post.cover %} no-image{% endunless %}">
         {% if post.cover %}
             <a class="post-card-image-link" href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}">

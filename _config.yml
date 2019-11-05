@@ -14,7 +14,8 @@ collections:
       - landing_tile_2_techblog.md
       - landing_tile_3_travel.md
       - landing_tile_4_insight.md
-
+      - landing_tile_5_github.md
+      - landing_tile_6_linked.md
 
 # Website info
 title: majway
@@ -26,14 +27,16 @@ favicon: assets/images/faviconit/favicon.ico
 production_url: https://majway.com
 source_url: https://github.com/majway27/aboutme
 CNAME: www.majway.com
+owner: Rob
 
 # Social info
 navigation: True # show the navbar links
 subscribers: False # you need to connect an external service for this to work,
 # if 'True' the submit button is disabled for now, but you can change that
 # by editing `_includes/subscribe-form.html`
-linkedin: rpmay
-twitter: majway27 # replace by your username
+github: https://github.com/majway27
+twitter: https://twitter.com/majway27
+linkedin: https://www.linkedin.com/in/rpmay/
 
 # Disqus
 disqus: False

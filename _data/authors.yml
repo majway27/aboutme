@@ -1,9 +1,9 @@
 rob:
   username: rob
   name: Rob May
+  location: Denver, USA
   url_full: http://majway.com/
   url: majway.com
-  bio: Reliability Engineer * Denver, USA
+  bio: Reliability Engineer
   picture: assets/images/rob.png
-  twitter: majway27
   cover: False

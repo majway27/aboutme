@@ -1,6 +1,8 @@
 #!/bin/bash
 JEKYLL_ENV=production
 
+cd ..
+
 #jekyll build
 jekyll build --incremental
 find _site/ -name "*.xml" -delete
